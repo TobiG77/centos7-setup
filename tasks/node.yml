@@ -1,0 +1,16 @@
+---
+- name: nodesources/fetch-installer
+  get_url:
+    url: https://rpm.nodesource.com/setup_8.x
+    dest: /tmp/setup_nodesources_0.8
+    mode: 0700
+- name: nodesources/install-repo
+  command: bash -e /tmp/setup_nodesources_0.8
+  args:
+    creates: /etc/yum.repos.d/nodesource-el7.repo
+- name: nodesources/install-node
+  yum:
+    name: "nodejs"
+    state: latest
+    update_cache: yes
+

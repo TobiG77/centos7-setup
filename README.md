@@ -1,10 +1,33 @@
-# Documentation on how to bootstrap the critical work environment
+# Documentation on how to bootstrap my work environment
 
-## 1) Checkout this repo
+Switched from an Ubuntu Desktop to Windows Desktop & Centos7 Guest in VMWare
+
+- mount sources on Windows 10 Pro via NFS
+- use vscode & visual studio + xamarin on Windows
+- leverage linux tool chains
+
+## 1) Checkout repo
+
+```bash
+
+mkdir -p code/github
+cd code/github
+sudo dhclient -v 
+sudo yum -y install git-core 
+git clone https://github.com/tobig77/centos7-setup.git 
+
+``` 
+
+## 2) Bootstrap base config to run ansible playbook
 
 ```bash
 
 cd centos7-setup
 sudo bash -xe ./bootstrap.sh
 
+```
+## 3) Run ansible playbook
+
+```bash
+sudo echo test && ansible-playbook setup.yml
 ```

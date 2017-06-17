@@ -1,0 +1,16 @@
+- name: dotnet/create-directory
+  file:
+    path: /opt/dotnet
+    state: directory
+    mode: 0755
+- name: dotnet/install
+  unarchive:
+    src: "https://go.microsoft.com/fwlink/?linkid=848821"
+    dest: /opt/dotnet
+    creates: /opt/dotnet/dotnet
+    remote_src: True
+- name: dotnet/symlink
+  file:
+    src: /opt/dotnet/dotnet
+    dest: /usr/local/bin/dotnet
+    state: link

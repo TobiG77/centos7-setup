@@ -1,0 +1,26 @@
+---
+- name: elixir/fetch-erlang-repo-rpm
+  get_url:
+    url: https://packages.erlang-solutions.com/erlang-solutions-1.0-1.noarch.rpm
+    dest: /tmp/erlang-solutions-1.0-1.noarch.rpm
+    mode: 0600
+    checksum: sha256:28cc89439aba4f32f397f85cdc0c52093612b582d627f0e8b6e484d9f6250cf3
+- name: elixir/install-erlang-repo-rpm
+  yum:
+    name: /tmp/erlang-solutions-1.0-1.noarch.rpm
+    state: present
+- name: elixir/install-erlang
+  yum:
+    name: esl-erlang
+    state: latest
+    update_cache: yes
+- name: elixir/cleanup-erlang-repo-file
+  file:
+    path: /tmp/erlang-solutions-1.0-1.noarch.rpm
+    state: absent
+- name: elixir/install-elixir-binaries
+  unarchive:
+    src: "https://github.com/elixir-lang/elixir/releases/download/v{{ elixir_version }}/Precompiled.zip"
+    dest: /usr/local
+    creates: /usr/local/bin/elixir
+    remote_src: True

@@ -1,0 +1,26 @@
+- name: aws/install-aws-cli
+  pip:
+    name: awscli
+    state: latest
+- name: aws/install-packer
+  unarchive:
+    src: "https://releases.hashicorp.com/packer/{{ packer_version }}/packer_{{ packer_version }}_linux_amd64.zip"
+    dest: /usr/local/bin
+    creates: /usr/local/bin/packer
+    remote_src: True
+- name: aws/install-terraform
+  unarchive:
+    src: https://releases.hashicorp.com/terraform/{{ terraform_version }}/terraform_{{ terraform_version }}_linux_amd64.zip
+    dest: /usr/local/bin
+    creates: /usr/local/bin/terraform
+    remote_src: True
+- name: aws/fetch-convenience-scripts-repo
+  become: false
+  git:
+    repo: https://github.com/TobiG77/aws-convenience-scripts.git
+    dest: /home/tobias/code/github/aws-convenience-scripts
+- name: aws/install-convenience-scripts-repo
+  become: false
+  command: make install
+  args:
+    chdir: /home/tobias/code/github/aws-convenience-scripts

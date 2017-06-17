@@ -1,0 +1,16 @@
+---
+- yum:
+    name: "*"
+    state: latest
+    update_cache: yes
+- yum:
+    name: "{{ item }}"
+    state: latest
+  with_items:
+    - wget
+    - unzip
+    - python-pip
+    - libunwind
+    - libicu
+
+

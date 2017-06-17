@@ -1,0 +1,13 @@
+---
+- hosts: localhost
+  become: true
+  become_user: root
+  become_method: sudo
+  tasks:
+  - include_vars: main.yml
+  - include: tasks/base.yml
+  - include: tasks/elixir.yml
+  - include: tasks/node.yml
+  - include: tasks/dotnet.yml
+  - include: tasks/aws-tools.yml
+  
