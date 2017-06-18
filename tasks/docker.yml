@@ -1,0 +1,14 @@
+- name: docker/install-prerequisites
+  yum:
+    name: "{{ item }} "
+    state: present
+  with_items:
+  - yum-utils
+  - device-mapper-persistent-data
+  - lvm2
+# - name: docker/setup-repo
+#   yum_config_manager:
+#     state: enabled
+#     name: docker
+#     repofile:  
+# https://docs.docker.com/engine/installation/linux/centos/#install-using-the-repository

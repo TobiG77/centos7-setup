@@ -21,6 +21,8 @@ yum -y install ansible
 
 yum -y install nfs-utils 
 
+systemctl disable firewalld
+
 systemctl enable sshd
 systemctl enable nfs-server
 systemctl enable nfs-lock
