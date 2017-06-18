@@ -24,3 +24,7 @@
   command: make install
   args:
     chdir: /home/tobias/code/github/aws-convenience-scripts
+- name: aws/install-serverless
+  npm:
+    name: serverless
+    global: yes
