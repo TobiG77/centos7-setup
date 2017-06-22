@@ -31,3 +31,9 @@ sudo bash -xe ./bootstrap.sh
 ```bash
 sudo echo test && ansible-playbook setup.yml
 ```
+
+## 4) NFS Client on Windows Host
+
+* Requires at least Windows 10 Pro
+* Enable NFS Client for Windows as per http://blog.cuongnv.com/2009/11/windows-7-client-for-nfs-and-user-name.html
+* Adjust AnonUID and AnonGID via Regedit as per article
